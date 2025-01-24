@@ -37,7 +37,7 @@ instance_id=$(aws ec2 run-instances \
  --security-group-ids $security_group_id \
  --subnet-id $subnet_id \
  --query 'Instances[0].InstanceId' \
- --output json
+ --output text
 )
 
 # wait for ec2 instance to be running
@@ -50,7 +50,7 @@ aws ec2 describe-instances \
  --instance-ids $instance_id \
  --query 'Reservations[0].Instances[0].PublicIpAddress' \
  --region $region \
- --output json
+ --output text
 )
 # Write instance data to a file
 # COMPLETE THIS PART
