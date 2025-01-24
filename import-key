@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Script to import a public key into AWS
+key_name="bcitkey" 
+key_path="~/.ssh/bcitkey.pub" 
+
+# Import the public key into AWS
+aws ec2 import-key-pair \
+    --key-name "$key_name" \
+    --public-key-material "$key_path"
