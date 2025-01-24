@@ -25,4 +25,26 @@
   - [Wait Instance Running - AWS CLI Command Reference](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/ec2/wait/instance-running.html)  
   - [Describe Instances - AWS CLI Command Reference](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/ec2/describe-instances.html)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Aaron W after thinking about AWS:
 ![image](https://github.com/user-attachments/assets/53ba86b4-ce50-488c-83f3-a31e169e4cf2)
