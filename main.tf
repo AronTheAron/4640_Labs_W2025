@@ -35,11 +35,11 @@ data "aws_ami" "ubuntu" {
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc
 resource "aws_vpc" "web" {
   cidr_block           = "10.0.0.0/16"
-	enable_dns_hostnames = true
+  enable_dns_hostnames = true
 
   tags = {
     Name    = "project_vpc"
-		Project = local.project_name
+    Project = local.project_name
   }
 }
 
@@ -50,34 +50,34 @@ resource "aws_vpc" "web" {
 resource "aws_subnet" "web" {
   vpc_id                  = aws_vpc.web.id
   cidr_block              = "10.0.1.0/24"
-	availability_zone       = "us-west-2a"
-	map_public_ip_on_launch = true
+  availability_zone       = "us-west-2a"
+  map_public_ip_on_launch = true
 
   tags = {
-    Name = "Web"
-	Project = local.project_name
+    Name    = "Web"
+    Project = local.project_name
   }
 }
 
 # Create internet gateway for VPC
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/internet_gateway
 resource "aws_internet_gateway" "web-gw" {
-	vpc_id = aws_vpc.web.id
+  vpc_id = aws_vpc.web.id
 
   tags = {
-    Name = "Web"
-	Project = local.project_name
+    Name    = "Web"
+    Project = local.project_name
   }
 }
 
 # create route table for web VPC 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table
 resource "aws_route_table" "web" {
-	vpc_id = aws_vpc.web.id 
+  vpc_id = aws_vpc.web.id
 
   tags = {
-    Name = "web-route"
-	Project = local.project_name
+    Name    = "web-route"
+    Project = local.project_name
   }
 }
 
@@ -102,8 +102,8 @@ resource "aws_security_group" "web" {
   vpc_id      = aws_vpc.web.id
 
   tags = {
-    Name = "Web"
-	Project = local.project_name
+    Name    = "Web"
+    Project = local.project_name
   }
 }
 
@@ -112,10 +112,10 @@ resource "aws_security_group" "web" {
 resource "aws_vpc_security_group_ingress_rule" "web-ssh" {
   security_group_id = aws_security_group.web.id
 
-  cidr_ipv4         = "0.0.0.0/0"
-  ip_protocol       = "tcp"
-  from_port         = 22
-  to_port           = 22
+  cidr_ipv4   = "0.0.0.0/0"
+  ip_protocol = "tcp"
+  from_port   = 22
+  to_port     = 22
 }
 
 # allow http
@@ -123,10 +123,10 @@ resource "aws_vpc_security_group_ingress_rule" "web-ssh" {
 resource "aws_vpc_security_group_ingress_rule" "web-http" {
   security_group_id = aws_security_group.web.id
 
-  cidr_ipv4         = "0.0.0.0/0"
-  ip_protocol       = "tcp"
-  from_port         = 80
-  to_port           = 80
+  cidr_ipv4   = "0.0.0.0/0"
+  ip_protocol = "tcp"
+  from_port   = 80
+  to_port     = 80
 }
 
 # allow all out
@@ -153,12 +153,12 @@ resource "aws_instance" "web" {
   ami                    = data.aws_ami.ubuntu.id
   instance_type          = "t2.micro"
   user_data              = file("./scripts/cloud-init.yaml")
-  vpc_security_group_ids = [aws_security_group.web.id] 
+  vpc_security_group_ids = [aws_security_group.web.id]
   subnet_id              = aws_subnet.web.id
 
   tags = {
-    Name = "Web"
-	  Project = local.project_name
+    Name    = "Web"
+    Project = local.project_name
   }
 }
 
