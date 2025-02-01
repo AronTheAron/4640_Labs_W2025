@@ -2,6 +2,6 @@
 
 Group Members: Jonathan Parras, Herman Luo, Aaron Wong
 
-Please look at the different branches on this Git Repo for the different labs:
+Please look at the following branches on this Repo for the completed labs and their files:
 - Week3Labs
 - Week4Labs
