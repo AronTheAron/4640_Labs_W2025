@@ -9,7 +9,7 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashi
 sudo apt update && sudo apt install terraform
 
 ## Generating SSH keys
-ssh-keygen -t ed25519 -f .ssh/do-key
+ssh-keygen -t ed25519 -f lab4_key
 
 ## Terraform Commands
 
