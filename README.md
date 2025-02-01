@@ -1,4 +1,5 @@
-# 4640-w4-lab-start-w25
+# Hello
 
+Please look at the different branches on this Git Repo for the different labs
+## Group Members: Jonathan Parras, Herman Luo, Aaron Wong
 
-See lab instructions on D2L for details
