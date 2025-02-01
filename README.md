@@ -1,4 +1,15 @@
-Ugh
+## Installing Terraform
+- get gpg keys to identify the hashicorp developers who maintain the repo
+wget -O - https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+
+- add repo to list of package repositories
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+
+- update repositories and install Terraform
+sudo apt update && sudo apt install terraform
+
+# Generating SSH keys
+ssh-keygen -t ed25519 -f .ssh/do-key
 
 ## Terraform Commands
 
