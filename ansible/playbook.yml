@@ -1,5 +1,5 @@
 - name: Configure web servers
-  hosts: web #run on all hosts defined in the inventory file
+  hosts: all #run on all hosts defined in the inventory file
   become: yes #execute with sudo
   
   tasks:
