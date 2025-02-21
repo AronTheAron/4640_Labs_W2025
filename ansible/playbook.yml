@@ -1,8 +1,37 @@
 - name: Configure web servers
+  hosts: all #run on all hosts defined in the inventory file
+  become: yes #execute with sudo
+  
   tasks:
-    - name: Install nginx
-    - name: create directory structure for web documents
-    - name: copy nginx conf file to server
-    - name: create link to nginx config file to enable it
-    - name: Generate index.html file from template
-    - name: reload nginx service
+    - name: Install nginx #install nginx on both servers with the package module
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+        update_cache: yes
+        
+    - name: create directory structure for web documents #Create directory for index.html file using the file module (See nginx.conf file in ansible/files for directory structure)
+      ansible.builtin.file:
+        path: /web/html
+        state: directory
+        
+    - name: copy nginx conf file to server #copy the nginx.conf file to your servers with the copy module (copy file to /etc/nginx/sites-available/default)
+      ansible.builtin.copy:
+        src: files/nginx.conf
+        dest: /etc/nginx/sites-available/default
+        
+    - name: create link to nginx config file to enable it #make a link with the file module to /etc/nginx/sites-enabled/default
+      ansible.builtin.file:
+        src: /etc/nginx/sites-available/default
+        dest: /etc/nginx/sites-enabled/default
+        state: link
+        
+    - name: Generate index.html file from template #create an index.html file from the index.html.j2 template using the template module (See nginx.conf for where to put index.html file)
+      ansible.builtin.template:
+        src: templates/index.html.j2
+        dest: /web/html/index.html
+        
+    - name: reload nginx service #reload the nginx service with the service module (The default for nginx in Ubuntu is that the service is enabled when you install the package, but just to be on the safe side, make sure the nginx service is enabled too. This is all one task, reload and enable.)
+      ansible.builtin.service:
+        name: nginx
+        state: reloaded
+        enabled: yes
