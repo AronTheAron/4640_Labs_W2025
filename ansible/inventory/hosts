@@ -1,5 +1,5 @@
-[ubuntu]
-localhost ansible_connection=docker ansible_ssh_host=ubuntu-container
+[redis_servers]
+rocky-redis ansible_host=localhost ansible_port=2222 ansible_user=rocky
 
-[rocky]
-localhost ansible_connection=docker ansible_ssh_host=rocky-container
+[frontend_servers]
+ubuntu-frontend ansible_host=localhost ansible_port=2223 ansible_user=ubuntu
