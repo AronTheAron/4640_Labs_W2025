@@ -1,12 +1,16 @@
 ---
-- name: Configure Ubuntu Server
-  hosts: ubuntu
+- name: Configure Redis Server
+  hosts: redis_servers
   become: yes
+  vars:
+    ansible_user: "rocky"
   roles:
-    - ubuntu
+    - redis
 
-- name: Configure Rocky Linux Server
-  hosts: rocky
+- name: Configure Frontend Server
+  hosts: frontend_servers
   become: yes
+  vars:
+    ansible_user: "ubuntu"
   roles:
-    - rocky
+    - frontend
