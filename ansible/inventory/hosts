@@ -1,0 +1,5 @@
+[ubuntu]
+localhost ansible_connection=docker ansible_ssh_host=ubuntu-container
+
+[rocky]
+localhost ansible_connection=docker ansible_ssh_host=rocky-container
