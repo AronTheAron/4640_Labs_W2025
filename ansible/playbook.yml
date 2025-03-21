@@ -1,0 +1,12 @@
+---
+- name: Configure Ubuntu Server
+  hosts: ubuntu
+  become: yes
+  roles:
+    - ubuntu
+
+- name: Configure Rocky Linux Server
+  hosts: rocky
+  become: yes
+  roles:
+    - rocky
